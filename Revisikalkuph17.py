@@ -295,12 +295,36 @@ elif menu == "Tentang Aplikasi":
     
     #Kotak Saran
 elif selected == "📞Kotak Saran dan Kritik":
-    st.header(":blue[Hubungi Kami]")
-    st.write("Silahkan tinggalkan pesan Anda pada kolom yang tersedia.")
-    contact_from = """
-        <form action="https://formsubmit.co/nevisahara2006@gmail.com" method="POST">
-            <input type="email" name="email" placeholder="Email Anda" required>
-            <textarea name="message" placeholder="Pesan Anda"></textarea>
-            <button type="submit">Send</button>
-        </form>
-        """
+st.markdown("<h2>Kotak Saran</h2>", unsafe_allow_html=True)
+st.markdown("Silakan tinggalkan saran, kritik, atau pertanyaan Anda melalui formulir di bawah ini:")
+
+# Formulir HTML - menggunakan FormSubmit + redirect
+st.markdown("""
+<form action="https://formsubmit.co/nevisahara2006@gmail.com" method="POST">
+    <!-- Nonaktifkan captcha -->
+    <input type="hidden" name="_captcha" value="false">
+
+    <!-- Redirect setelah form dikirim -->
+    <input type="hidden" name="_next" value="https://nevisahara-smartph.streamlit.app/terima_kasih">
+
+    <!-- Input Nama -->
+    <label for="nama">Nama:</label><br>
+    <input type="text" name="nama" required><br><br>
+
+    <!-- Input Email -->
+    <label for="email">Email:</label><br>
+    <input type="email" name="email" required><br><br>
+
+    <!-- Input Pesan -->
+    <label for="pesan">Pesan / Saran:</label><br>
+    <textarea name="pesan" rows="5" required></textarea><br><br>
+
+    <!-- Tombol Kirim -->
+    <button type="submit">Kirim</button>
+</form>
+""", unsafe_allow_html=True)
+
+
+# Halaman Konfirmasi
+st.markdown("<h2>Terima Kasih!</h2>", unsafe_allow_html=True)
+st.write("Pesan Anda telah berhasil dikirim. Kami akan merespons secepatnya.")
